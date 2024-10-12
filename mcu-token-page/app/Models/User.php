@@ -18,6 +18,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
+        'birth',
+        'country',
+        'city',
+        'address',
+        'referral_state',
+        'referred_by',
         'email',
         'password',
     ];
@@ -43,5 +50,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function referral(){
+        return $this->hasOne(Referral::class);
+    }
+
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 }
