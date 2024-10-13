@@ -26,7 +26,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'lastname'=>fake()->lastName(),
-            'birht'=>fake()->date(),
+            'birth'=>fake()->date(),
             'city'=>fake()->city(),
             'country'=>fake()->country(),
             'address'=>fake()->address(),
