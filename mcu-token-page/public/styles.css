@@ -22,6 +22,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    object-fit: conver;
+    object-fit: cover;
     z-index: -1;
 }
+
