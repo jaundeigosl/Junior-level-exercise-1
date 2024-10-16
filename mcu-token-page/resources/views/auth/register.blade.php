@@ -308,7 +308,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="Confirm Password" />
+            <x-input-label for="password_confirmation" value="Confirm Password" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
