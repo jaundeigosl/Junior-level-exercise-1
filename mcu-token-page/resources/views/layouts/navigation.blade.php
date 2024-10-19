@@ -5,25 +5,25 @@
             <!-- Logo -->
             <div class="shrink-0 flex items-center">
                     <a href="{{ route('index') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 " />
                     </a>
                 </div>
             <div class="flex">
                 @auth() 
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <x-nav-link class="{{(Route::is('dashboard'))? 'text-red-700' : ''}}" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                        <x-nav-link class="{{(Route::is('transactions'))? 'text-red-700' : ''}}" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            Transactions
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                        <x-nav-link class="{{(Route::is('store'))? 'text-red-700' : ''}}" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            Store
                         </x-nav-link>
                     </div>
                 @elseguest

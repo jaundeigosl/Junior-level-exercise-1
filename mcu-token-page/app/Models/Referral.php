@@ -10,6 +10,8 @@ class Referral extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'code',
         'total_referred_users'
     ];
 

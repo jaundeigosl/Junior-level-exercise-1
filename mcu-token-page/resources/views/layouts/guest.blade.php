@@ -22,7 +22,7 @@
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-2 px-6 py-4 bg-blue-900 shadow-md overflow-hidden sm:rounded-lg mb-4">
+            <div {{$attributes->merge(['class' => "w-full sm:max-w-md mt-2 px-6 py-4 bg-blue-900 shadow-md overflow-hidden sm:rounded-lg mb-4"])}}>
                 {{ $slot }}
             </div>
         </div>
