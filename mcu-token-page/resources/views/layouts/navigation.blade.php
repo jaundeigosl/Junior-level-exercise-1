@@ -11,19 +11,14 @@
             <div class="flex">
                 @auth() 
                     <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link class="{{(Route::is('dashboard'))? 'text-red-700' : ''}}" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                    <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link class="{{(Route::is('dashboard')) ? 'text-red-700' : 'text-gray-800'}}" :href="route('dashboard')">
+                            Dashboard
                         </x-nav-link>
                     </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link class="{{(Route::is('transactions'))? 'text-red-700' : ''}}" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link class="{{(Route::is('transactions')) ? 'text-red-700' : ''}}" :href="route('transactions')" :active="request()->routeIs('dashboard')">
                             Transactions
-                        </x-nav-link>
-                    </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link class="{{(Route::is('store'))? 'text-red-700' : ''}}" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            Store
                         </x-nav-link>
                     </div>
                 @elseguest
@@ -33,7 +28,7 @@
                                 Register
                             </x-nav-link>
                         </div>
-                        <div class="hidden space-x-8 sm:-my-px sm:me-10 sm:flex">
+                        <div class="space-x-8 sm:-my-px sm:me-10 sm:flex">
                             <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                                 Log in
                             </x-nav-link>

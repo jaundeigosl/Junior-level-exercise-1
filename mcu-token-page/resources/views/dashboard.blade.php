@@ -8,14 +8,9 @@
             </x-container-flex>
             
             <x-container-flex>
-                <x-card class="mb-4">
-                    <div class="flex flex-wrap justify-center justify-around">
-                        <p>From:</p>
-                        <p >To:</p>
-                        <p>Purpouse:</p>
-                        <p>Amount:</p>
-                    </div>
-                </x-card>
+                <x-card-transactions>
+
+                </x-card-transactions>
             </x-container-flex>
 
         </section>

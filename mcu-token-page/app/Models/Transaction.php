@@ -10,10 +10,10 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'purpouse',
+        'sender_id',
+        'receiver_id',
+        'purpose',
         'amount_transfered',
-        'amount_recieved',
-
     ];
 
     public function user(){

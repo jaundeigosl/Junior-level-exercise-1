@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('sender_id');
             $table->string('purpose')->nullable();
             $table->float('amount_transfered')->unsigned()->default(0);
-            $table->float('amount_recieved')->unsigned()->default(0);
             $table->string('receiver_id');
             $table->timestamps();
         });
