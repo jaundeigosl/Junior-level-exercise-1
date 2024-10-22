@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            
-        ];
+            'sender_id' => fake()->numberBetween(1,11),
+            'purpose' => fake()->text(),
+            'receiver_id' => fake()->numberBetween(1,11),
+            'amount_transfered' => fake()->numberBetween(1,1000)
+         ];
     }
 }

@@ -19,6 +19,13 @@ class UserSeeder extends Seeder
             'password'=>'root'
         ]);
 
-        User::factory(10)->hasReferral(1)->create();
+        User::factory()->hasReferral()->create([
+            'name'=>'store',
+            'email'=>'store@gmail.com',
+            'password'=>'root',
+            'tokens' => '1000'
+        ]);
+
+        User::factory(10)->hasReferral()->create();
     }
 }
