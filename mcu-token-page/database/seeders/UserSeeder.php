@@ -19,6 +19,6 @@ class UserSeeder extends Seeder
             'password'=>'root'
         ]);
 
-        User::factory(10)->create();
+        User::factory(10)->hasReferral(1)->create();
     }
 }
