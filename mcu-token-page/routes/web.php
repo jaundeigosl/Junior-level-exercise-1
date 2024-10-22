@@ -19,12 +19,16 @@ Route::get('/referral-check', [ReferralCheckController::class , 'index'])
 Route::post('/referral-check', [ReferralCheckController::class , 'check'])
 ->middleware(['auth', 'verified'])->name('referral-check');
 
-Route::get('/transactions', [TransactionController::class , 'index'])
-->middleware(['auth', 'verified'])->name('transactions');
 
-Route::post('/transactions', [TransactionController::class , 'store'])
-->middleware(['auth', 'verified'])->name('transactions');
+Route::middleware(['auth','verified'])->group(function(){
 
+    Route::get('/transactions/form', [TransactionController::class , 'index'])->name('transactions-form');
+    
+    Route::get('/transactions/show', [TransactionController::class , 'show'])->name('transactions-show');
+
+    Route::post('/transactions/form', [TransactionController::class , 'store'])->name('transactions-store');
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

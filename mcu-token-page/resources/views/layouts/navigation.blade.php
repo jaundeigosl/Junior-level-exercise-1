@@ -17,7 +17,7 @@
                         </x-nav-link>
                     </div>
                     <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link class="{{(Route::is('transactions')) ? 'text-red-700' : ''}}" :href="route('transactions')" :active="request()->routeIs('dashboard')">
+                        <x-nav-link class="{{(Route::is('transactions-form')) ? 'text-red-700' : ''}}" :href="route('transactions-form')" :active="request()->routeIs('dashboard')">
                             Transactions
                         </x-nav-link>
                     </div>
