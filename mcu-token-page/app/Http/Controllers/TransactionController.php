@@ -52,9 +52,22 @@ class TransactionController extends Controller
 
     public function show(){
 
-        $LastTransactions = Transaction::latest()->where('sender_id', auth()->user()->id)->orWhere('receiver_id', auth()->user()->id)->get();
+        $lastTransactions = Transaction::latest()->where('sender_id', auth()->user()->id)->orWhere('receiver_id', auth()->user()->id)->get();
+        $transactionDataWithNames = collect([]);
+        foreach($lastTransactions as $transaction){
+            $transactionDataWithNames->push([
+                'sender_name'=>User::find($transaction->sender_id)->name,
+                'sender_lastname'=>User::find($transaction->sender_id)->lastname,
+                'amount' => $transaction->amount_transfered,
+                'receiver_name' => User::find($transaction->receiver_id)->name,
+                'receiver_lastname' => User::find($transaction->receiver_id)->lastname,
+                'transaction_id' => $transaction->id,
+                'purpose' => $transaction->purpose,
+                'time' => $transaction->created_at
+            ]);
+        }
         
-        return(view('components.transactions-show',['transactions'=>$LastTransactions]));
+        return(view('components.transactions-show', ['transactions' => $transactionDataWithNames]));
     }
 
     public function delete(){
