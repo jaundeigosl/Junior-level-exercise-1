@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Referral;
+use App\Models\Transaction;
 use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
@@ -69,6 +70,18 @@ class RegisteredUserController extends Controller
         $currentYear = now()->year;
         $currentMonth = now()->month;
         $currentDay = now()->day;
+        $over35 = new Transaction;
+        $under35 = new Transaction;
+
+        $over35->sender_id = 2;
+        $over35->receiver_id= $user->id;
+        $over35->amount_transfered= 5;
+        $over35->purpose='Welcome, for being 35 years old or over here is a little gift';
+        $under35->sender_id = 2;
+        $under35->receiver_id= $user->id;
+        $under35->amount_transfered= 10;
+        $under35->purpose='Welcome, for being under 35 here is a little gift';
+        $age = false;
 
         if( $currentYear - $userYear >=35){
             User::where('id',$user->id)->update(['tokens' => $user->tokens + 5]);
@@ -76,10 +89,12 @@ class RegisteredUserController extends Controller
             if($userYear - $currentYear ==34){
                 if($userMonth> $currentMonth){
                     User::where('id',$user->id)->update(['tokens' => $user->tokens + 10]);
+                    $age = true;
                 }else{
                     if($userMonth==$currentMonth){
                         if($userDay > $currentDay){
                             User::where('id',$user->id)->update(['tokens' => $user->tokens + 10]);
+                            $age = true;
                         }else{
                             User::where('id',$user->id)->update(['tokens' => $user->tokens + 5]);
                         }
@@ -89,13 +104,17 @@ class RegisteredUserController extends Controller
                 }
             }else{
                 User::where('id',$user->id)->update(['tokens' => $user->tokens + 10]);
+                $age = true;
             }
         }   
-
 
         event(new Registered($user));
 
         Auth::login($user);
+
+        //gift for the user's age
+
+        ($age) ? $under35->save() : $over35->save();
 
         return redirect(route('referral-check', absolute: false));
     }

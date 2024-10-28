@@ -12,7 +12,9 @@
             </x-link-btn>
         </div>
         <div class="ml-4">
-            <x-primary-button type="button">Nada</x-primary-button>
+            <x-link-btn href="{{route('stripe')}}">
+                Recharge
+            </x-link-btn>
         </div>
     </section>
 
