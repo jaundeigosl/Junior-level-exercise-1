@@ -12,15 +12,17 @@ class UserSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
+    {   
         User::factory()->hasReferral()->create([
             'name'=>'test',
+            'lastname'=>'user',
             'email'=>'test@gmail.com',
             'password'=>'root'
         ]);
 
         User::factory()->hasReferral()->create([
-            'name'=>'store',
+            'name'=>'mcu',
+            'lastname'=>'store',
             'email'=>'store@gmail.com',
             'password'=>'root',
             'tokens' => '1000'

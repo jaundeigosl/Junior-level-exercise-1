@@ -15,10 +15,6 @@ class TransactionController extends Controller
 
     public function index(){
 
-        $userTokens = auth()->user()->tokens;
-        if(is_null(Session('ownTokens'))){
-            Session::put('ownTokens',$userTokens);
-        }
         return view('components.transactions-form');
     }
 
@@ -36,15 +32,16 @@ class TransactionController extends Controller
         ]);
 
         $reciever = User::where('email',$request->for)->get();
+        $user = auth()->user();
 
         Transaction::create([
-            'sender_id' => auth()->user()->id,
+            'sender_id' => $user->id,
             'purpose' => $request->purpose,
             'amount_transfered' => $request->amount,
             'receiver_id' =>$reciever[0]->id,
         ]);
 
-        User::where('id',auth()->user()->id)->update(['tokens'=> auth()->user()->tokens - $request->amount]);
+        User::where('id',$user->id)->update(['tokens'=> $user->tokens - $request->amount]);
         User::where('id',$reciever[0]->id)->update(['tokens'=> $reciever[0]->tokens + $request->amount]);
         
         return redirect('/transactions/form')->with('success','');
@@ -52,29 +49,43 @@ class TransactionController extends Controller
 
     public function show(){
 
-        $lastTransactions = Transaction::latest()->where('sender_id', auth()->user()->id)->orWhere('receiver_id', auth()->user()->id)->get();
+        $user = auth()->user();
+        $lastTransactions = Transaction::latest()->where('sender_id', $user->id)->orWhere('receiver_id', $user->id)->get();
         $transactionDataWithNames = collect([]);
+
         foreach($lastTransactions as $transaction){
-            $transactionDataWithNames->push([
-                'sender_name'=>User::find($transaction->sender_id)->name,
-                'sender_lastname'=>User::find($transaction->sender_id)->lastname,
-                'amount' => $transaction->amount_transfered,
-                'receiver_name' => User::find($transaction->receiver_id)->name,
-                'receiver_lastname' => User::find($transaction->receiver_id)->lastname,
+
+            $data = [];
+
+            if($transaction->sender_id == $user->id){
+
+                $userReceiver = User::find($transaction->receiver_id);
+                $data+= 
+                ['sender_name'=>$user->name,
+                'sender_lastname'=>$user->lastname,
+                'receiver_name'=>$userReceiver->name,
+                'receiver_lastname'=>$userReceiver->lastname
+                ];
+
+            }else{
+
+                $userSender = User::find($transaction->sender_id);
+                $data+=
+                ['sender_name'=>$userSender->name,
+                'sender_lastname'=>$userSender->lastname,
+                'receiver_name'=>$user->name,
+                'receiver_lastname'=>$user->lastname];
+            }
+
+            $data += ['amount' => $transaction->amount_transfered,
                 'transaction_id' => $transaction->id,
                 'purpose' => $transaction->purpose,
                 'time' => $transaction->created_at
-            ]);
+            ];
+
+            $transactionDataWithNames->push($data);
         }
         
         return(view('components.transactions-show', ['transactions' => $transactionDataWithNames]));
-    }
-
-    public function delete(){
-
-    }
-
-    public function update(){
-
     }
 }

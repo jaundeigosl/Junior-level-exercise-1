@@ -1,20 +1,6 @@
 <x-app-layout >
-    <div class="flex justify-between p-[20px]">
-        <section class="w-[85%] ml-4">
-            <x-container-flex>
-                <x-card class="mb-4 flex justify-center">
-                    <h2 class="text-xl font-bold">Last Transactions</h2>
-                </x-card>
-            </x-container-flex>
-            
-            <x-container-flex>
-                <x-card-transactions>
-
-                </x-card-transactions>
-            </x-container-flex>
-
-        </section>
-        <section class="w-[15%] h-[25vh] bg-neutral-400 rounded sticky mr-8" style="position: -webkit-sticky; top:15%;">
+    <div class="flex justify-center p-[20px]">
+        <section class="w-[25%] h-[25vh] bg-neutral-400 rounded sticky mr-8" style="position: -webkit-sticky; top:15%;">
             <x-container-flex>
                 <div  >
                     <div class="m-4">
@@ -22,10 +8,10 @@
                             <h2 class="text-lg font-bold">Referral Code</h2>
                         </div>
                         <div class="flex flex-wrap justify-center">
-                            <div>
+                            <div class="m-2">
                                 <p>Code: {{$code}}</p>
                             </div>
-                            <div>
+                            <div class="m-2">
                                 <p>Referred Users: {{$refUsers}}</p>
                             </div>
                         </div>

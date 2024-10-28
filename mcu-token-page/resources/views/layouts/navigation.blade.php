@@ -21,6 +21,11 @@
                             Transactions
                         </x-nav-link>
                     </div>
+                    <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link class="{{(Route::is('store')) ? 'text-red-700' : ''}}" :href="route('store')" :active="request()->routeIs('dashboard')">
+                            Store
+                        </x-nav-link>
+                    </div>
                 @elseguest
                     <div class="flex justify-items-end">
                         <div class="hidden space-x-8 sm:-my-px sm:me-10 sm:flex">
