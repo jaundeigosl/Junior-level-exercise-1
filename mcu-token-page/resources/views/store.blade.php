@@ -1,4 +1,9 @@
 <x-app-layout>
+    @if(Session::has('success'))
+    <script>
+        alert('Successful transaction')
+    </script>
+    @endif
     <div class="flex justify-center m-4 mt-8">
         <h1 class="text-2xl">MCU STORE</h1>
     </div>

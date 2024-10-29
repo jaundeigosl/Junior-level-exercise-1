@@ -7,6 +7,7 @@ use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\User;
+use Session;
 use Closure;
 
 class StoreController extends Controller
@@ -15,6 +16,9 @@ class StoreController extends Controller
 
     public function index(){
         $products = Product::all();
+        if(Session::has('success')){
+            return view('store',['products' => $products])->with('success','success');
+        }
         return view('store',['products' => $products]); 
     }
 
@@ -49,7 +53,7 @@ class StoreController extends Controller
 
         User::where('id', $user->id)->update(['tokens' => $user->tokens - $this->total]);
 
-        return redirect('/store');
+        return redirect('/store')->with('success','success');
 
     }
 

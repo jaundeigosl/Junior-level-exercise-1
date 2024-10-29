@@ -32,11 +32,11 @@
                 <form action="{{route('store-pay')}}" method="POST">  
                     @csrf
                     <x-input-label for="address" value="Delivery Address"/>
-                    <x-text-input name="address" placeholder="{{$user->address}}"/>
+                    <x-text-input id="address" name="address" placeholder="{{$user->address}}"/>
                     <x-input-error :messages="$errors->get('address')" class="mt-2"/>
 
                     <x-input-label class="mt-2" for="quantity" value="Quantity"/>
-                    <x-text-input type="number" name="quantity" min="1" max="10"/>
+                    <x-text-input id="quantity" type="number" name="quantity" min="1" max="10"/>
                     <x-input-error :messages="$errors->get('quantity')" class="mt-2"/>
 
                     <x-text-input hidden name="product" value="{{$product->id}}"/>

@@ -1,8 +1,8 @@
 <x-transactions>
     @if(Session::has('success'))
-    <script>
-        alert('Success')
-    </script>
+        <script>
+            alert('Successful transaction')
+        </script>
     @endif
     <section class="my-8">
         <x-container-flex class="bg-neutral-400 rounded mt-8 w-[20%]">
@@ -18,17 +18,17 @@
             @csrf
                 <div>
                     <x-input-label for="for" value="For (reciever email)" />
-                    <x-text-input name="for" type="text" placeholder="friend@gmail.com"/>
+                    <x-text-input id="for" name="for" type="text" placeholder="friend@gmail.com"/>
                     <x-input-error :messages="$errors->get('for')"/>
                 </div>
                 <div>
                     <x-input-label for="purpose" value="Purpose" />
-                    <x-text-input name="purpose" type="text" placeholder="i love you"/>
+                    <x-text-input id="purpose" name="purpose" type="text" placeholder="i love you"/>
                     <x-input-error :messages="$errors->get('purpose')"/>
                 </div>
                 <div>
                     <x-input-label for="amount" value="Amount (in tokens)" />
-                    <x-text-input name="amount" type="number" min="0.1" max="1000" step=".1" />
+                    <x-text-input id="amount" name="amount" type="number" min="0.1" max="1000" step=".1" />
                     <x-input-error :messages="$errors->get('amount')"/>
                 </div>
                 <x-primary-button  class="my-4">

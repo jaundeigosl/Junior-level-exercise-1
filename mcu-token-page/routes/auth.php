@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\ReferralCheckController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\MultiFactorAuth;
+use App\Http\Controllers\ProfileUpdateController;
 
 Route::get('/login/multi-auth',[AuthenticatedSessionController::class , 'multiAuth'])
 ->middleware('auth')->name('multiAuth');
@@ -61,8 +62,8 @@ Route::middleware(['auth',MultiFactorAuth::class])->group(function () {
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
-
     
+    Route::put('city',[ProfileUpdateController::class, 'city'])->name('city-update');
 });
 
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')

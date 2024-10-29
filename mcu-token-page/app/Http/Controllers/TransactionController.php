@@ -14,6 +14,9 @@ class TransactionController extends Controller
 {
 
     public function index(){
+        if(Session::has('success')){
+            return view('components.transactions-form')->with('success','success');
+        }
 
         return view('components.transactions-form');
     }
@@ -44,7 +47,7 @@ class TransactionController extends Controller
         User::where('id',$user->id)->update(['tokens'=> $user->tokens - $request->amount]);
         User::where('id',$reciever[0]->id)->update(['tokens'=> $reciever[0]->tokens + $request->amount]);
         
-        return redirect('/transactions/form')->with('success','');
+        return redirect('/transactions/form')->with('success','success');
     }
 
     public function show(){

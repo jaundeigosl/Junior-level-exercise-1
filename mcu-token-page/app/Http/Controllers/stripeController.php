@@ -12,6 +12,9 @@ use App\Models\Transaction;
 class stripeController extends Controller
 {
     public function index(){
+        if(Session::has('success')){
+            return view('components.transactions-recharge')->with('success','success');
+        }
         return view('components.transactions-recharge');
     }
 
@@ -75,7 +78,7 @@ class stripeController extends Controller
             Recharge::where('id',$recharge->id)->update(['status'=>'paid']);
             
             
-            return view('components.stripe-success');
+            return redirect('/stripe')->with('success','success');
 
         }catch(\Exception $e){
             throw new NotFoundHttpException;
