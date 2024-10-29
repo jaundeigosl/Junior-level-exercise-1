@@ -65,8 +65,8 @@ class RegisteredUserController extends Controller
         //calculating the age
         $userBirth = $user->birth;
         $userYear = substr($userBirth,0,4);
-        $userMonth = substr($userBirth,5,4);;
-        $userDay = substr($userBirth,10,4);;;
+        $userMonth = substr($userBirth,5,4);
+        $userDay = substr($userBirth,10,4);
         $currentYear = now()->year;
         $currentMonth = now()->month;
         $currentDay = now()->day;

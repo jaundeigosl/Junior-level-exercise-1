@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('address');
             $table->boolean('referral_state')->default(false);
+            $table->boolean('multiple_auth')->default(false);
             $table->string('referred_by')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
