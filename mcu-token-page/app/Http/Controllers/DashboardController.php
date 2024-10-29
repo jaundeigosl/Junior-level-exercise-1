@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Session;
 
 class DashboardController extends Controller
 {
@@ -20,11 +21,13 @@ class DashboardController extends Controller
 
     public function authToggle(Request $request){
         $user = auth()->user();
-
+        
         if($request->authValue == "true"){
             User::where('id',$user->id)->update(['multiple_auth'=>true]);
+            Session::put('secondAuth',true);
         }else{
             User::where('id',$user->id)->update(['multiple_auth'=>false]);
+            Session::put('secondAuth',false);
         }
         return redirect(route('dashboard'));
     }   

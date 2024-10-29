@@ -21,7 +21,12 @@ class MultiFactorAuth
         if($user->multiple_auth){
             if(!(Session::has('secondAuth'))){
                 return redirect()->back();
+            }else{
+                if(!Session::get('secondAuth')){
+                    return redirect()->back();
+                }
             }
+
         }
         return $next($request);
     }

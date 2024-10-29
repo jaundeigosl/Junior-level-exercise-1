@@ -42,9 +42,12 @@ class AuthenticatedSessionController extends Controller
     }
 
     public function multiAuth(){
-        $authOption = random_int(1,2);
 
-        if($authOption == 1){
+        if(!Session::has('authOption')){
+            Session::put('authOption',random_int(1,2));
+        }
+
+        if(Session::get('authOption') == 1){
             return view('components.multi-auth1');
         }
         else{

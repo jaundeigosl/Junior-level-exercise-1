@@ -38,13 +38,10 @@
             </section>
             <!-- Buy button -->
             <section class="flex justify-center">
-                <div class="mt-12 mb-4 bg-red-950 w-96 p-2  rounded-[80px]">
+                <div class="mt-12 mb-4 bg-red-950 w-96 pt-2 pb-4 px-4  rounded-[80px]">
                     <div class=" mt-4 ">
                         <p class="text-2xl text-white font-medium text-center">Get your Tickes for the next game!</p>
-                    </div>
-                    <div class="flex justify-center mt-8 mb-2">   
-                        <a class="text-white text-2xl font-medium border-2 border-amber-400 py-2 px-4 rounded-[12px] transition hover:border-red-700 hover:bg-red-700 hover:text-black hover:font-bold duration-300 ">Buy Tickets</a>
-                    </div>    
+                    </div>                       
                 </div>
             </section>
         </section>
@@ -75,14 +72,11 @@
                 </x-card>
             </div>
                 <!-- Buy button -->
-            <div>
-                <div class="my-12 bg-red-950 w-96 p-2  rounded-[80px]">
+            <div class="mb-4">
+                <div class="my-12 bg-red-950 w-96 pt-2 pb-4 rounded-[80px]">
                     <div class=" mt-4 ">
                         <p class="text-2xl text-white font-medium text-center">Are you a true red devil?<br>Then get your shirt!</p>
-                    </div>
-                    <div class="flex justify-center mt-8 mb-2">   
-                        <a class="text-white text-2xl font-medium border-2 border-amber-400 py-2 px-4 rounded-[12px] transition hover:border-red-700 hover:bg-red-700 hover:text-black hover:font-bold duration-300 "  href="{{}}">Buy Shirts</a>
-                    </div>    
+                    </div>                    
                 </div>
             </div>
         </section>  
